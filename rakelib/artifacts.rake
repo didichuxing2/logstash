@@ -325,6 +325,9 @@ namespace "artifact" do
         File.join(basedir, "config", "logstash.yml").tap do |path|
           dir.input("#{path}=/etc/logstash")
         end
+        File.join(basedir, "pkg", "pipelines.yml").tap do |path|
+          dir.input("#{path}=/etc/logstash")
+        end
         require "fpm/package/rpm"
         out = dir.convert(FPM::Package::RPM)
         out.license = "ASL 2.0" # Red Hat calls 'Apache Software License' == ASL
